@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Will You Be My Valentine? 💖</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #fff;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            max-width: 500px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            margin: 15px;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .yes {
+            background-color: #ff4b5c;
+            color: white;
+            font-size: 1.5em;
+            padding: 18px 45px;
+            border-radius: 40px;
+            box-shadow: 0 8px 20px rgba(255, 75, 92, 0.6);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .no {
+            background-color: #ffffff;
+            color: #ff4b5c;
+            font-size: 1.1em;
+            padding: 12px 30px;
+            border-radius: 30px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card" id="card">
+    <h1>Hey FOMO 💕</h1>
+    <p>You make my world brighter every single day.</p>
+    <h2>Will you be my Valentine? 🌹</h2>
+
+    <button class="yes" onclick="goToYesPage()">Yes 💖</button>
+    <button class="no" id="noBtn">No 🙈</button>
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+    const card = document.getElementById("card");
+
+    noBtn.addEventListener("mouseenter", moveButton);
+
+    function moveButton() {
+        const cardRect = card.getBoundingClientRect();
+        const btnRect = noBtn.getBoundingClientRect();
+
+        const maxX = cardRect.width - btnRect.width - 20;
+        const maxY = cardRect.height - btnRect.height - 20;
+
+        noBtn.style.left = Math.random() * maxX + "px";
+        noBtn.style.top = Math.random() * maxY + "px";
+    }
+
+    function goToYesPage() {
+        window.location.href = "yes.html";
+    }
+</script>
+
+</body>
+</html>
