@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <!-- ✅ REQUIRED FOR MOBILE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Will You Be My Valentine? 💖</title>
 
     <style>
@@ -12,50 +16,51 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             color: #fff;
             text-align: center;
         }
 
         .card {
             background: rgba(255, 255, 255, 0.15);
-            padding: 50px;
+            padding: 30px;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            max-width: 500px;
+            width: 90%;
+            max-width: 420px;
             position: relative;
         }
 
         h1 {
-            font-size: 2.8em;
-            margin-bottom: 10px;
+            font-size: 2.2em;
         }
 
         p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
+            font-size: 1.1em;
         }
 
         h2 {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         button {
             border: none;
             cursor: pointer;
-            margin: 15px;
+            margin: 12px;
             transition: transform 0.2s;
+            touch-action: manipulation;
         }
 
         button:hover {
             transform: scale(1.1);
         }
 
+        /* YES button */
         .yes {
             background-color: #ff4b5c;
             color: white;
-            font-size: 1.5em;
-            padding: 18px 45px;
+            font-size: 1.4em;
+            padding: 18px 40px;
             border-radius: 40px;
             box-shadow: 0 8px 20px rgba(255, 75, 92, 0.6);
             animation: pulse 1.5s infinite;
@@ -67,11 +72,12 @@
             100% { transform: scale(1); }
         }
 
+        /* NO button */
         .no {
             background-color: #ffffff;
             color: #ff4b5c;
             font-size: 1.1em;
-            padding: 12px 30px;
+            padding: 12px 28px;
             border-radius: 30px;
             position: absolute;
         }
@@ -92,18 +98,25 @@
     const noBtn = document.getElementById("noBtn");
     const card = document.getElementById("card");
 
-    noBtn.addEventListener("mouseenter", moveButton);
-
     function moveButton() {
         const cardRect = card.getBoundingClientRect();
         const btnRect = noBtn.getBoundingClientRect();
 
-        const maxX = cardRect.width - btnRect.width - 20;
-        const maxY = cardRect.height - btnRect.height - 20;
+        const maxX = cardRect.width - btnRect.width - 10;
+        const maxY = cardRect.height - btnRect.height - 10;
 
         noBtn.style.left = Math.random() * maxX + "px";
         noBtn.style.top = Math.random() * maxY + "px";
     }
+
+    // Desktop
+    noBtn.addEventListener("mouseenter", moveButton);
+
+    // Mobile (VERY IMPORTANT)
+    noBtn.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        moveButton();
+    });
 
     function goToYesPage() {
         window.location.href = "yes.html";
